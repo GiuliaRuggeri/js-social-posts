@@ -103,12 +103,12 @@ console.log(likeBtns);
 //Counter dei likes
 likeBtns.forEach((element, index, array)=>{
     element.addEventListener("click", function(){
-
+console.log(likes)
       element.classList.toggle("like-button--liked");
       if(likes.includes(index)){
         console.log(index)
        document.getElementById(`like-counter-${index}`).innerHTML=0;
-       likes.splice(index, 1)
+       likes.splice(likes.indexOf(index), 1)
       }else{
         document.getElementById(`like-counter-${index}`).innerHTML=1;  
         likes.push(index);
