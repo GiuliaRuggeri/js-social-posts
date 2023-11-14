@@ -1,5 +1,12 @@
 //Dichiara elemento container dal DOM
 const postContainer = document.getElementById("container");
+//Funzione per convertire la data dal formato USA a quello IT
+function convertDate(dates){
+const d = new Date(dates);
+let text = d.toLocaleString("it-IT",{dateStyle:"long"});
+return text;   
+}
+
 
 //Array di oggetti che contiene i post
 let post = [
@@ -54,11 +61,11 @@ function createPost(card, i) {
             <div class="post__header">
                 <div class="post-meta">
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${card.photo}${i}" alt="Phil Mangione">
+                        <img class="profile-pic" src="${card.photo}${i}" alt="PM">
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${card.author}</div>
-                        <div class="post-meta__time">${card.time}</div>
+                        <div class="post-meta__time">${convertDate(card.time)}</div>
                     </div>
                 </div>
             </div>
@@ -112,3 +119,4 @@ likeBtns.forEach((element, index, array)=>{
 
     
 });
+
