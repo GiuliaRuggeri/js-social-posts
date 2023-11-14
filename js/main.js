@@ -1,5 +1,7 @@
+//Dichiara elemento container dal DOM
 const postContainer = document.getElementById("container");
 
+//Array di oggetti che contiene i post
 let post = [
 
     {
@@ -34,6 +36,7 @@ let post = [
     }
 ]
 
+//Crezione post ed elementi interni
 post.forEach((element, index, array)=>{
 
     createPost(element, index);
@@ -72,7 +75,7 @@ function createPost(card, i) {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                        Piace a <b id="like-counter-${i}" class="js-likes-counter">0</b> persone
                     </div>
                 </div>
             </div>
@@ -84,14 +87,28 @@ function createPost(card, i) {
 
 }
 
+let likes=[];
+
+//Cambio colore del testo al click sul bottone "Mi Piace"
 let likeBtns=postContainer.querySelectorAll(".like-button");
 console.log(likeBtns);
 
+//Counter dei likes
 likeBtns.forEach((element, index, array)=>{
     element.addEventListener("click", function(){
 
       element.classList.toggle("like-button--liked");
+      if(likes.includes(index)){
+        console.log(index)
+       document.getElementById(`like-counter-${index}`).innerHTML=0;
+       likes.splice(index, 1)
+      }else{
+        document.getElementById(`like-counter-${index}`).innerHTML=1;  
+        likes.push(index);
+      }
+      
 
     })
+
     
 });
